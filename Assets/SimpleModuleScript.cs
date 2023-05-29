@@ -78,7 +78,7 @@ public class SimpleModuleScript : MonoBehaviour {
 			}
 			if (MethodInt == 3) 
 			{
-				XInt = Mathf.Abs((XInt * info.GetStrikes() - info.GetOffIndicators().ToList().Count) % 65);
+				XInt = Mathf.Abs((XInt - info.GetOffIndicators().ToList().Count) % 65);
 				methodResults1 [i] = XInt;
 			}
 			if (MethodInt == 4) 

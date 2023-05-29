@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
+    <title>Procedure — Keep Talking and Nobody Explodes Module</title>
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="js/ktane-utils.js"></script>       
+</head>
+<body>
+    <div class="section">
+        <div class="page page-bg-01">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                <span class="page-header-section-title">Procedure</span>
+            </div>
+            <div class="page-content">
+                <img src="img/Component/Procedure.svg" class="diagram">
+                <h2>On the Subject of Procedure</h2>
+                <p class="flavour-text">So this is what sequences feel like...</p>
+                
+                <p>This module will have 3 displays, the top being the starting number, the middle being the method and the bottom being the repeats. There will
+				be a keypad with 14 buttons to answer with. Under the keypad is a circle with a radius (not to scale) that might be used in methods.</p>
+
+                <h3>Method list</h3>
+                <p>The method display has a number that equals one of the formulas below.</p>
+				
+				<table>
+				<tr><th>1</th><th>(xr + p) % 4000</th><th>5</th><th>| (x - 75d) % 200 |</th></tr>
+				<tr><th>2</th><th>(x(b/7)) % 50</th><th>6</th><th>(x^2) % 39</th></tr>
+				<tr><th>3</th><th>| (x - o) % 65 |</th><th>7</th><th>(12(r % 5)) % 24</th></tr>
+				<tr><th>4</th><th>(x/r + (fh)) % 14</th></tr>
+				</table>
+				<p></p>
+				<table>
+				<tr><th>x = current number</th><th>r = radius of circle</th></tr>
+				<tr><th>p = ports</th><th>d = diameter</th></tr>
+				<tr><th>b = batteries</th><th>o = unlit indicators</th></tr>
+				<tr><th>f = two factor widgets</th><th>h = battery holders</th></tr>
+				</table>
+				
+				<p><strong>Note 1: The '|' sign means absolute value.</strong></p>
+				<p><strong>Note 2: If dividing x has a remainder, ignore it.</strong></p>
+
+                <h3>Solving</h3>
+                
+				<p>Start with the top display number and use the middle display number as the method, repeating it using the bottom display number.
+				Remember that every new repeat uses the new number from the previous repeat. The first time counts as 1 repeat.</p>
+				
+				<p>After you finish repeating the method and get your final current number, modify your method number with the formula 
+				<strong>"((Method Number + Current Number) % 7) + 1"</strong></p>
+				
+				<p>Using this new method number, go through the same process as stated in the first paragraph of this section, using the
+				new starting number and method but same repeat amount.</p>
+				
+				<p>When that is done, modulo the new number by 14 and press the corresponding keypad button to solve the module.</p>
+				
+            </div>
+            <div class="page-footer relative-footer">Page 1 of 1</div>
+        </div>
+    </div>
+</body>
+</html>
