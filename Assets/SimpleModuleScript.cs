@@ -73,22 +73,22 @@ public class SimpleModuleScript : MonoBehaviour {
 			}
 			if (MethodInt == 2) 
 			{
-				XInt = (XInt * (info.GetBatteryCount() / 7)) % 50;
+				XInt = (XInt * (info.GetBatteryCount() / 2) + 1) % 50;
 				methodResults1 [i] = XInt;
 			}
 			if (MethodInt == 3) 
 			{
-				XInt = Mathf.Abs((XInt - info.GetOffIndicators().ToList().Count) % 65);
+				XInt = Mod(XInt - info.GetOffIndicators().ToList().Count, 65);
 				methodResults1 [i] = XInt;
 			}
 			if (MethodInt == 4) 
 			{
-				XInt = (XInt / RadiusInt + (info.GetTwoFactorCounts() * info.GetBatteryHolderCount())) % 14;
+				XInt = ((XInt + 5 / RadiusInt) + (info.GetTwoFactorCounts() * info.GetBatteryHolderCount())) % 14;
 				methodResults1 [i] = XInt;
 			}
 			if (MethodInt == 5) 
 			{
-				XInt = Mathf.Abs((XInt - (150 * RadiusInt)) % 200);
+				XInt = Mod(XInt - (150 * RadiusInt), 200);
 				methodResults1 [i] = XInt;
 			}
 			if (MethodInt == 6) 
@@ -98,7 +98,7 @@ public class SimpleModuleScript : MonoBehaviour {
 			}
 			if (MethodInt == 7) 
 			{
-				XInt = ((RadiusInt % 5) * 12) % 24;
+				XInt = (XInt + (RadiusInt % 5) * 12) % 24;
 				methodResults1 [i] = XInt;
 			}
 		}
@@ -117,22 +117,22 @@ public class SimpleModuleScript : MonoBehaviour {
 			}
 			if (MethodInt == 2) 
 			{
-				XInt = (XInt * (info.GetBatteryCount() / 7)) % 50;
+				XInt = (XInt * (info.GetBatteryCount() / 2) + 1) % 50;
 				methodResults2 [i] = XInt;
 			}
 			if (MethodInt == 3) 
 			{
-				XInt = Mathf.Abs((XInt * info.GetStrikes() - info.GetOffIndicators().ToList().Count) % 65);
+				XInt = Mod(XInt - info.GetOffIndicators().ToList().Count, 65);
 				methodResults2 [i] = XInt;
 			}
 			if (MethodInt == 4) 
 			{
-				XInt = (XInt / RadiusInt + (info.GetTwoFactorCounts() * info.GetBatteryHolderCount())) % 14;
+				XInt = ((XInt + 5 / RadiusInt) + (info.GetTwoFactorCounts() * info.GetBatteryHolderCount())) % 14;
 				methodResults2 [i] = XInt;
 			}
 			if (MethodInt == 5) 
 			{
-				XInt = Mathf.Abs((XInt - (150 * RadiusInt)) % 200);
+				XInt = Mod(XInt - (150 * RadiusInt), 200);
 				methodResults2 [i] = XInt;
 			}
 			if (MethodInt == 6) 
@@ -142,7 +142,7 @@ public class SimpleModuleScript : MonoBehaviour {
 			}
 			if (MethodInt == 7) 
 			{
-				XInt = ((RadiusInt % 5) * 12) % 24;
+				XInt = (XInt + (RadiusInt % 5) * 12) % 24;
 				methodResults2 [i] = XInt;
 			}
 		}
@@ -155,11 +155,12 @@ public class SimpleModuleScript : MonoBehaviour {
 
 	void buttonPresses(KMSelectable pressedButton)
 	{
-		audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, transform);
 		int buttonPosition = Array.IndexOf(keypadButs, pressedButton);
 
 		if (_isSolved == false) 
 		{
+			audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, keypadButs[buttonPosition].transform);
+			keypadButs [buttonPosition].AddInteractionPunch ();
 			switch (buttonPosition) 
 			{
 			case 0:
@@ -266,5 +267,10 @@ public class SimpleModuleScript : MonoBehaviour {
 	void Log(string message)
 	{
 		Debug.LogFormat("[Procedure #{0}] {1}", ModuleId, message);
+	}
+	private int Mod(int x, int m)
+	{
+		int r = x % m;
+		return r < 0 ? r + m : r;
 	}
 }
