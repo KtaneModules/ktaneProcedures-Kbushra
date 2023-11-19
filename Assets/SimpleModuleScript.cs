@@ -112,12 +112,12 @@ public class SimpleModuleScript : MonoBehaviour {
 		{
 			if (MethodInt == 1) 
 			{
-				XInt = (XInt * RadiusInt + info.GetPortCount ()) % 4000;
+				XInt = ((XInt * RadiusInt) + info.GetPortCount ()) % 4000;
 				methodResults2 [i] = XInt;
 			}
 			if (MethodInt == 2) 
 			{
-				XInt = (XInt * (info.GetBatteryCount() / 2) + 1) % 50;
+				XInt = ((XInt * (info.GetBatteryCount() / 2)) + 1) % 50;
 				methodResults2 [i] = XInt;
 			}
 			if (MethodInt == 3) 
@@ -127,7 +127,7 @@ public class SimpleModuleScript : MonoBehaviour {
 			}
 			if (MethodInt == 4) 
 			{
-				XInt = ((XInt + 5 / RadiusInt) + (info.GetTwoFactorCounts() * info.GetBatteryHolderCount())) % 14;
+				XInt = (((XInt + 5) / RadiusInt) + (info.GetTwoFactorCounts() * info.GetBatteryHolderCount())) % 14;
 				methodResults2 [i] = XInt;
 			}
 			if (MethodInt == 5) 
@@ -142,7 +142,7 @@ public class SimpleModuleScript : MonoBehaviour {
 			}
 			if (MethodInt == 7) 
 			{
-				XInt = (XInt + (RadiusInt % 5) * 12) % 24;
+				XInt = (XInt + ((RadiusInt % 5) * 12)) % 24;
 				methodResults2 [i] = XInt;
 			}
 		}
