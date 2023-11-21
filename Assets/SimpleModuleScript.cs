@@ -273,4 +273,42 @@ public class SimpleModuleScript : MonoBehaviour {
 		int r = x % m;
 		return r < 0 ? r + m : r;
 	}
+
+	#pragma warning disable 414
+	private readonly string TwitchHelpMessage = @"!{0} press <0-13> [Presses the specified button]";
+	#pragma warning restore 414
+
+	IEnumerator ProcessTwitchCommand(string command)
+	{
+		string[] parameters = command.Split(' ');
+		if (Regex.IsMatch(parameters[0], @"^\s*press\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+		{
+			if (parameters.Length > 2)
+				yield return "sendtochaterror Too many parameters!";
+			else if (parameters.Length == 2)
+			{
+				int temp = -1;
+				if (!int.TryParse(parameters[1], out temp))
+				{
+					yield return "sendtochaterror!f The specified button '" + parameters[1] + "' is invalid!";
+					yield break;
+				}
+				if (temp < 0 || temp > 13)
+				{
+					yield return "sendtochaterror The specified button '" + parameters[1] + "' is invalid!";
+					yield break;
+				}
+				yield return null;
+				keypadButs[temp].OnInteract();
+			}
+			else if (parameters.Length == 1)
+				yield return "sendtochaterror Please specify which button to press!";
+		}
+	}
+
+	IEnumerator TwitchHandleForcedSolve()
+	{
+		keypadButs[XInt].OnInteract();
+		yield return new WaitForSeconds(.1f);
+	}
 }
